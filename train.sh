@@ -1,10 +1,10 @@
 python3 paintstorch \
   -s 2333 \
   -c 64 \
-  -x '/home/yliess/Bureau/PaintsTorchExp/test' \
+  -x '/home/yliess/Bureau/PaintsTorchExp/batch_3_random_test' \
   -t '/home/yliess/Bureau/PaintsTorchDataset/custom' \
   -v '/home/yliess/Bureau/PaintsTorchDataset/custom' \
-  -b 2 \
+  -b 3 \
   -e 100 \
-  -m strokes \
-  -d
+  -m random \
+  # -d

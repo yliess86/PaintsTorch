@@ -252,9 +252,9 @@ def train(double, seed, constant, experience_dir, train_path, valid_path, batch_
             'epoch'        : epoch
         }, os.path.join(experience_dir, 'model/discriminator.pth'))
 
-        if epoch > 0 and epoch % 20 == 0:
+        if epoch % 20 == 0:
             fid, fid_var = evaluate()
             print(f'\n===================\nFID = {fid} +- {fid_var}\n===================\n')
 
             with open(os.path.join(experience_dir, 'fid.csv'), 'a+') as f:
-                f.write(f'{epoch};{fid};{fid_var}')
+                f.write(f'{epoch};{fid};{fid_var}\n')
