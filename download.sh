@@ -17,4 +17,3 @@ tar -xf ${filename} -C res/model
 
 echo "$GREEN [download.sh] $NC Removing temp files"
 rm ${filename}
-rm ./cookie.txt
