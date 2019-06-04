@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 nvidia-docker run \
   -it \
   --name Paintstorch \

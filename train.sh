@@ -1,10 +1,47 @@
+#!/usr/bin/env bash
+
+pip3 install -r requirements.txt
+
 python3 paintstorch \
   -s 2333 \
   -c 64 \
-  -x '/home/yliess/Bureau/PaintsTorchExp/batch_3_random_test' \
-  -t '/home/yliess/Bureau/PaintsTorchDataset/custom' \
-  -v '/home/yliess/Bureau/PaintsTorchDataset/custom' \
-  -b 3 \
+  -x '/Projects/PaintsTorchExp/paper_random_simple' \
+  -t '/Projects/PaintsTorchDataset/paper/colored' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart' \
+  -b 32 \
   -e 100 \
   -m random \
   # -d
+
+python3 paintstorch \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/paper_strokes_simple' \
+  -t '/Projects/PaintsTorchDataset/paper/colored' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart' \
+  -b 32 \
+  -e 100 \
+  -m strokes \
+  # -d
+
+python3 paintstorch \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/paper_strokes_double' \
+  -t '/Projects/PaintsTorchDataset/paper/colored' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart' \
+  -b 32 \
+  -e 100 \
+  -m strokes \
+  -d
+
+python3 paintstorch \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/custom_strokes_double' \
+  -t '/Projects/PaintsTorchDataset/custom' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart' \
+  -b 32 \
+  -e 100 \
+  -m strokes \
+  -d
