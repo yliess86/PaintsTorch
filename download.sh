@@ -12,7 +12,7 @@ fi
 echo "$GREEN [download.sh] $NC Downloading models"
 url="https://www.dropbox.com/s/n6tj7s08acbg285/models.tar.xz?dl=0"
 filename="res/model/models.tar.xz"
-curl -o ${filename} $url
+wget -O ${filename} $url
 tar -xf ${filename} -C res/model
 
 echo "$GREEN [download.sh] $NC Removing temp files"
