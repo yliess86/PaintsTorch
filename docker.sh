@@ -1,6 +1,6 @@
 nvidia-docker run \
   -it \
-  --name colorizer \
-  -v home/yliess/Projects:/workspace/Projects \
+  --name Paintstorch \
+  -v /home/yliess/Projects:/Projects \
   pytorch/pytorch:latest \
   bash
