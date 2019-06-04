@@ -15,6 +15,6 @@ url="https://drive.google.com$query"
 curl -b ./cookie.txt -L -o ${filename} $url
 tar -xf ${filename} -C res/model
 
-echo "Removing temp files"
+echo "[download.sh] Removing temp files"
 rm ${filename}
 rm ./cookie.txt
