@@ -45,6 +45,7 @@ class ImageFolder(data.Dataset):
         self.crop       = RandomCrop(img_size)
         self.method     = method
         self.img_size   = img_size
+        self.empty      = 0
 
     def init(self, dir):
         imgs = [
@@ -71,32 +72,33 @@ class ImageFolder(data.Dataset):
             colored = colored.transpose(Image.FLIP_LEFT_RIGHT)
             sketch  = sketch.transpose(Image.FLIP_LEFT_RIGHT)
 
-        coin = np.random.random()
-        hint = None
+        empty = self.empty + 0
+        if empty % 2 != 0:
+            if self.method == 'strokes':
+                hint = self.mask_gen(
+                    transforms.ToTensor()(colored).permute(2, 1, 0).detach().cpu().numpy() * 255.,
+                    self.htransform
+                )
 
-        if coin >= 0.5 and self.method == 'strokes':
-            hint = self.mask_gen(
-                transforms.ToTensor()(colored).permute(2, 1, 0).detach().cpu().numpy() * 255.,
-                self.htransform
-            )
-
-        if coin >= 0.5 and self.method == 'random':
-            mu, sigma = 1, 5e-3
-            X         = stats.truncnorm((0 - mu) / sigma, (1 - mu) / sigma, loc=mu, scale=sigma)
-            maskS     = self.img_size[0] // 4
-            mask      = torch.rand(1, maskS, maskS).ge(X.rvs(1)[0]).float()
-            vcolored  = self.transform(colored.resize((self.img_size[0] // 4, self.img_size[1] // 4)))
-            hint      = torch.cat((vcolored * mask, mask), 0)
+            elif self.method == 'random':
+                mu, sigma = 1, 5e-3
+                X         = stats.truncnorm((0 - mu) / sigma, (1 - mu) / sigma, loc=mu, scale=sigma)
+                maskS     = self.img_size[0] // 4
+                mask      = torch.rand(1, maskS, maskS).ge(X.rvs(1)[0]).float()
+                vcolored  = self.transform(colored.resize((self.img_size[0] // 4, self.img_size[1] // 4)))
+                hint      = torch.cat((vcolored * mask, mask), 0)
 
         colored  = self.transform(colored)
         sketch   = self.stransform(sketch)
 
 
-        if hint is None:
+        if empty % 2 == 0:
             hint = torch.cat((
                 self.htransform(torch.ones((3, colored.size(1) // 4, colored.size(2) // 4)) * 0.5),
                 torch.zeros((1, colored.size(1) // 4, colored.size(2) // 4))
             ), 0)
+
+        self.empty =+ 1
 
         return colored, sketch, hint
 
