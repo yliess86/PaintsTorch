@@ -72,6 +72,7 @@ class ImageFolder(data.Dataset):
             colored = colored.transpose(Image.FLIP_LEFT_RIGHT)
             sketch  = sketch.transpose(Image.FLIP_LEFT_RIGHT)
 
+        hint  = None
         empty = self.empty + 0
         if empty % 2 != 0:
             if self.method == 'strokes':
@@ -92,7 +93,7 @@ class ImageFolder(data.Dataset):
         sketch   = self.stransform(sketch)
 
 
-        if empty % 2 == 0:
+        if hint is None:
             hint = torch.cat((
                 self.htransform(torch.ones((3, colored.size(1) // 4, colored.size(2) // 4)) * 0.5),
                 torch.zeros((1, colored.size(1) // 4, colored.size(2) // 4))
