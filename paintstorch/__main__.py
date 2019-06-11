@@ -1,9 +1,10 @@
 import argparse
 
-from model import train
+from model import train, evaluate
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--final_evaluation', action="store_true", help='Perform final evaluation: compute final FID for a generator')
     parser.add_argument('-d', '--double', action="store_true", help='Do the model have a Double Generator Architecture?')
     parser.add_argument('-s', '--seed', default=2333, type=int, help='Do the model have a Double Generator Architecture?')
     parser.add_argument('-c', '--constant', default=64, type=int, help='Model Architecture constant (default 64)')
@@ -16,16 +17,24 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    train(
-        double         = args.double,
-        seed           = args.seed,
-        constant       = args.constant,
-        experience_dir = args.experience_dir,
-        train_path     = args.train_path,
-        valid_path     = args.valid_path,
-        batch_size     = args.batch_size,
-        epochs         = args.epochs,
-        drift          = 1e-3,
-        adwd           = 1e-4,
-        method         = args.method
-    )
+    if not args.final_evaluation:
+        train(
+            double         = args.double,
+            seed           = args.seed,
+            constant       = args.constant,
+            experience_dir = args.experience_dir,
+            train_path     = args.train_path,
+            valid_path     = args.valid_path,
+            batch_size     = args.batch_size,
+            epochs         = args.epochs,
+            drift          = 1e-3,
+            adwd           = 1e-4,
+            method         = args.method
+        )
+    else:
+        evaluate(
+            seed           = args.seed,
+            constant       = args.constant,
+            experience_dir = args.experience_dir,
+            valid_path     = args.valid_path
+        )

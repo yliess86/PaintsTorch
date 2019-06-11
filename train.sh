@@ -2,6 +2,7 @@
 
 pip install -r requirements.txt
 
+# ================= TRAIN =====================
 python3 paintstorch \
   -s 2333 \
   -c 64 \
@@ -45,3 +46,32 @@ python3 paintstorch \
   -e 100 \
   -m strokes \
   -d
+
+# ============== EVALUATE =======================
+python3 paintstorch \
+  -f \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/paper_random_simple' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart'
+
+python3 paintstorch \
+  -f \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/paper_strokes_simple' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart'
+
+python3 paintstorch \
+  -f \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/paper_strokes_double' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart'
+
+python3 paintstorch \
+  -f \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/custom_strokes_double' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart'
