@@ -28,8 +28,6 @@ def evaluate(seed, constant, experience_dir, valid_path):
         print('[ERROR] Need generator checkpoint!')
         exit(1)
 
-    for param in features.parameters(): param.requires_grad = False
-
     valloader     = CreateValidLoader(valid_path, batch_size, img_size)
     config        = {
         'target_npz' : './res/model/fid_stats_color.npz',
