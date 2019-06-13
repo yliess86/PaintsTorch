@@ -36,5 +36,6 @@ if __name__ == '__main__':
             seed           = args.seed,
             constant       = args.constant,
             experience_dir = args.experience_dir,
-            valid_path     = args.valid_path
+            valid_path     = args.valid_path,
+            batch_size     = args.batch_size
         )
