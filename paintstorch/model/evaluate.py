@@ -28,6 +28,8 @@ def evaluate(seed, constant, experience_dir, valid_path, batch_size):
         print('[ERROR] Need generator checkpoint!')
         exit(1)
 
+    generator.eval()
+
     img_size      = (512, 512)
     valloader     = CreateValidLoader(valid_path, batch_size, img_size)
     config        = {
@@ -36,9 +38,6 @@ def evaluate(seed, constant, experience_dir, valid_path, batch_size):
         'image_size' : img_size[0]
     }
     evaluate      = Evaluate(generator, i2v, valloader, namedtuple('Config', config.keys())(*config.values()))
-
-    generator.eval()
-    discriminator.eval()
 
     fid, fid_var = evaluate()
     print(f'\n===================\nFID = {fid} +- {fid_var}\n===================\n')
