@@ -52,6 +52,7 @@ python3 paintstorch \
   -f \
   -s 2333 \
   -c 64 \
+  -b 32 \
   -x '/Projects/PaintsTorchExp/paper_random_simple' \
   -v '/Projects/PaintsTorchDataset/paper/lineart'
 
@@ -59,6 +60,7 @@ python3 paintstorch \
   -f \
   -s 2333 \
   -c 64 \
+  -b 32 \
   -x '/Projects/PaintsTorchExp/paper_strokes_simple' \
   -v '/Projects/PaintsTorchDataset/paper/lineart'
 
@@ -66,6 +68,7 @@ python3 paintstorch \
   -f \
   -s 2333 \
   -c 64 \
+  -b 32 \
   -x '/Projects/PaintsTorchExp/paper_strokes_double' \
   -v '/Projects/PaintsTorchDataset/paper/lineart'
 
@@ -73,5 +76,6 @@ python3 paintstorch \
   -f \
   -s 2333 \
   -c 64 \
+  -b 32 \
   -x '/Projects/PaintsTorchExp/custom_strokes_double' \
   -v '/Projects/PaintsTorchDataset/paper/lineart'
