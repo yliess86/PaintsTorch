@@ -10,7 +10,7 @@ from eval import Evaluate
 
 from collections import namedtuple
 
-def evaluate(seed, constant, experience_dir, valid_path):
+def evaluate(seed, constant, experience_dir, valid_path, batch_size):
     if not os.path.exists(experience_dir):
         os.mkdir(experience_dir)
 
@@ -28,6 +28,7 @@ def evaluate(seed, constant, experience_dir, valid_path):
         print('[ERROR] Need generator checkpoint!')
         exit(1)
 
+    img_size      = (512, 512)
     valloader     = CreateValidLoader(valid_path, batch_size, img_size)
     config        = {
         'target_npz' : './res/model/fid_stats_color.npz',
