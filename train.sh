@@ -47,6 +47,17 @@ python3 paintstorch \
   -m strokes \
   -d
 
+python3 paintstorch \
+  -s 2333 \
+  -c 64 \
+  -x '/Projects/PaintsTorchExp/custom_only_strokes_double' \
+  -t '/Projects/PaintsTorchDataset/custom_only' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart' \
+  -b 32 \
+  -e 100 \
+  -m strokes \
+  -d
+
 # ============== EVALUATE =======================
 python3 paintstorch \
   -f \
@@ -78,4 +89,12 @@ python3 paintstorch \
   -c 64 \
   -b 32 \
   -x '/Projects/PaintsTorchExp/custom_strokes_double' \
+  -v '/Projects/PaintsTorchDataset/paper/lineart'
+
+python3 paintstorch \
+  -f \
+  -s 2333 \
+  -c 64 \
+  -b 32 \
+  -x '/Projects/PaintsTorchExp/custom_only_strokes_double' \
   -v '/Projects/PaintsTorchDataset/paper/lineart'
